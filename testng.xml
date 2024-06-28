@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test  name="Launch URL">
         <classes>
-            <class name="tests.LaunchLandingPageTest">
+            <class name="tests.CtruhTest">
                 </class>
         </classes>
     </test>
