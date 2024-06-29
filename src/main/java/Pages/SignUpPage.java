@@ -17,8 +17,6 @@ public class SignUpPage extends AbstractComponent
         PageFactory.initElements(driver,this);
     }
 
-
-
     @FindBy(xpath = "//button[@class='primarySM']")
     WebElement moveToSignUpForm;
 
@@ -51,9 +49,6 @@ public class SignUpPage extends AbstractComponent
 
     @FindBy(xpath = "//div[@class='recaptcha-checkbox-border']")
     WebElement roboCheckBoxOtp;
-
-
-
 
     public void createNewAccount(String name, String email, String password, String mobileNo) throws InterruptedException
     {
