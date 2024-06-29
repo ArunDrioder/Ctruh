@@ -8,40 +8,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class BlogsSolutionsPage extends AbstractComponent
+public class VersaAIPage extends AbstractComponent
 {
     WebDriver driver;
 
-    public BlogsSolutionsPage(WebDriver driver)
+    public VersaAIPage(WebDriver driver)
     {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(xpath = "//div[normalize-space()='Platform']")
-    WebElement goToPlatformPage;
-
-
+    @FindBy (xpath = "//button[@class='primarySM']")
+    WebElement goToDemoPage;
 
     public void verifyCurrentUrl(String url) throws InterruptedException {
         waitForUrl(url);
-
-        String blogsPageUrl = driver.getCurrentUrl();
+        String versaAIPageUrl = driver.getCurrentUrl();
 
     }
 
-    public PlatformSolutionsPage goToPlaformsPage() throws InterruptedException {
+    public BookADemoPage goToDemoPage() throws InterruptedException {
         try {
-            waitForElementToBeVisible(goToPlatformPage);
-            waitForElementToBeClickable(goToPlatformPage);
-            goToPlatformPage.click();
+            waitForElementToBeVisible(goToDemoPage);
+            waitForElementToBeClickable(goToDemoPage);
+            goToDemoPage.click();
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
-            executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[normalize-space()='Platform']")));
+            executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='primarySM']")));
         }
+
         Thread.sleep(3000);
-        return new PlatformSolutionsPage(driver);
+
+        return new BookADemoPage(driver);
 
     }
 }

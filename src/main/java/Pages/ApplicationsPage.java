@@ -26,7 +26,10 @@ public class ApplicationsPage extends AbstractComponent {
     WebElement goToEditorPage;
 
 
-    public void verifyCurrentUrl() {
+    public void verifyCurrentUrl(String url) throws InterruptedException
+    {
+
+         waitForUrl(url);
         String applicationPageUrl = driver.getCurrentUrl();
 
 
@@ -37,12 +40,14 @@ public class ApplicationsPage extends AbstractComponent {
             waitForElementToBeVisible(goToEditorPage);
             waitForElementToBeClickable(goToEditorPage);
             goToEditorPage.click();
+
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[normalize-space()='Editor']")));
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.urlToBe("https://www.ctruh.com/editor"));
+
         }
+
+        Thread.sleep(3000);
 
         return new EditorPage(driver);
     }

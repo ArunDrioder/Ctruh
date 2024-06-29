@@ -9,10 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Properties;
 
 public class AbstractComponent
 {
     WebDriver driver;
+
 
     public AbstractComponent(WebDriver driver)
     {
@@ -20,6 +22,8 @@ public class AbstractComponent
         PageFactory.initElements(driver,this);
 
     }
+
+
 
     @FindBy(xpath = "//div[normalize-space()='Applications']")
     WebElement goToApplicationPage;
@@ -56,6 +60,13 @@ public void waitForElementToBeClickable(WebElement element)
     WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     wait.until(ExpectedConditions.elementToBeClickable(element));
 }
+
+public void waitForUrl(String url)
+{
+    WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+    wait.until(ExpectedConditions.urlToBe(url));
+}
+
 
 
 

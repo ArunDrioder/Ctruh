@@ -31,7 +31,8 @@ public class MaasSolutionsPage extends AbstractComponent {
     @FindBy(xpath = "//div[normalize-space()='Blogs']")
     WebElement gotoBlogsSolutionsPage;
 
-    public void verifyCurrentUrl() {
+    public void verifyCurrentUrl(String url) throws InterruptedException {
+        waitForUrl(url);
         String maasPageUrl = driver.getCurrentUrl();
 
     }
@@ -57,8 +58,7 @@ public class MaasSolutionsPage extends AbstractComponent {
         return new ResourcesSolutionsPage(driver);
     }
 
-    public BlogsSolutionsPage goToBlogsSolutionsPage()
-    {
+    public BlogsSolutionsPage goToBlogsSolutionsPage() throws InterruptedException {
         try {
             waitForElementToBeVisible(gotoBlogsSolutionsPage);
             waitForElementToBeClickable(gotoBlogsSolutionsPage);
@@ -67,6 +67,8 @@ public class MaasSolutionsPage extends AbstractComponent {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[normalize-space()='Blogs']")));
         }
+
+        Thread.sleep(3000);
         return new BlogsSolutionsPage(driver);
 
     }

@@ -20,6 +20,9 @@ public class LandingPage extends AbstractComponent
     @FindBy(xpath = "//div[normalize-space()='Applications']")
     WebElement goToApplicationPage;
 
+    @FindBy(xpath = "//button[@class='secondarySM text-[--white-color]']")
+    WebElement goToSignUpPage;
+
     public void goTo()
     {
         driver.get("https://www.ctruh.com/home");
@@ -31,56 +34,20 @@ public class LandingPage extends AbstractComponent
         System.out.println(landingPageUrl);
     }
 
-    public ApplicationsPage gotoApplicationsPage()
-    {
+    public ApplicationsPage gotoApplicationsPage() throws InterruptedException {
+
         goToApplicationPage.click();
+        Thread.sleep(3000);
         return new ApplicationsPage(driver);
     }
 
 
-//
-//
-//    public void navigateToApplications(String url)
-//    {
-//        goToApplicationPage.click();
-//        waitForUrlChange(url);
-//    }
-//
-//    public void navigateToEditor(String url)
-//    {
-//        goToEditorPage.click();
-//        waitForUrlChange(url);
-//    }
-//
-//    public void navigateToSolutions(String url)
-//    {
-//        goToSolutionsPage.click();
-//        waitForUrlChange(url);
-//    }
-//
-//    public void navigateToConnect(String url)
-//    {
-//        goToConnectPage.click();
-//        waitForUrlChange(url);
-//    }
-//
-//    public void navigateToAI(String url)
-//    {
-//        goToAIPage.click();
-//        waitForUrlChange(url);
-//    }
-//
-//    public void navigateToSignUp(String url)
-//    {
-//        goToSignUpPage.click();
-//        waitForUrlChange(url);
-//    }
-//
-//    public void navigateToBookDemo(String url)
-//    {
-//        goToBookADemoPage.click();
-//        waitForUrlChange(url);
-//    }
+public SignUpPage goToSignUpPage()
+{
+    goToSignUpPage.click();
+
+    return new SignUpPage(driver);
+}
 
 
 }

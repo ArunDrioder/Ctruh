@@ -1,17 +1,16 @@
 package Pages;
 
 import AbstractComponents.AbstractComponent;
-import com.aventstack.extentreports.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.Set;
 
-public class ResourcesSolutionsPage extends AbstractComponent
+public class CareersConnectPage extends AbstractComponent
 {
     WebDriver driver;
 
-    public ResourcesSolutionsPage(WebDriver driver)
+    public CareersConnectPage(WebDriver driver)
     {
         super(driver);
         this.driver = driver;
@@ -19,7 +18,6 @@ public class ResourcesSolutionsPage extends AbstractComponent
     }
 
     public void verifyCurrentUrl() throws InterruptedException {
-
 
         String originalWindow = driver.getWindowHandle();
         Set<String> allWindows = driver.getWindowHandles();
@@ -33,13 +31,12 @@ public class ResourcesSolutionsPage extends AbstractComponent
                 break;
             }
         }
-        Thread.sleep(3000);
-        String resourcePageUrl = driver.getCurrentUrl();
-        System.out.println("The resource page Url is" +resourcePageUrl);
+
+        String careersPageUrl = driver.getCurrentUrl();
+        System.out.println("The resource page Url is" +careersPageUrl);
         driver.close();
         driver.switchTo().window(originalWindow);
 
     }
-
 
 }

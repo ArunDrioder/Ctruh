@@ -31,8 +31,8 @@ public class EditorPage extends AbstractComponent
     @FindBy (xpath = "//div[normalize-space()='MaaS']")
     WebElement goToMaasSolutionsPage;
 
-    public void verifyCurrentUrl()
-    {
+    public void verifyCurrentUrl(String url) throws InterruptedException {
+       waitForUrl(url);
         String editorPageUrl = driver.getCurrentUrl();
 
     }
@@ -43,8 +43,7 @@ public class EditorPage extends AbstractComponent
        actions.moveToElement(clickToOpenSolutionsMenu).build().perform();
    }
 
-   public MaasSolutionsPage goToMaasSolutionsPage()
-    {
+   public MaasSolutionsPage goToMaasSolutionsPage() throws InterruptedException {
         try {
             waitForElementToBeVisible(goToMaasSolutionsPage);
             waitForElementToBeClickable(goToMaasSolutionsPage);
@@ -52,11 +51,10 @@ public class EditorPage extends AbstractComponent
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[normalize-space()='MaaS']")));
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.urlToBe("https://www.ctruh.com/solutions/metaverse-as-a-service"));
+
         }
 
-
+        Thread.sleep(3000);
         return new MaasSolutionsPage(driver);
     }
 }
